@@ -1,55 +1,58 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+
+const { width } = Dimensions.get("window");
 
 const Plans = () => {
   return (
-    <View style={styles.section}>
-      <Text style={styles.title}>Your Plan</Text>
+    <View style={styles.wrapper}>
+      <Text style={styles.heading}>Your Plan</Text>
 
-      {/* Row container */}
-      <View style={styles.rowBox}>
-        {/* LEFT — Yellow Card */}
-        <View style={styles.leftBox}>
-          <View style={styles.cardYellow}>
-            <Text style={styles.level}>Medium</Text>
-            <Text style={styles.activity}>Yoga Group</Text>
-            <Text style={styles.info}>25 Nov. | 14:00 - 15:00</Text>
-            <Text style={styles.info}>A5 Room</Text>
+      <View style={styles.row}>
 
-            <View style={styles.trainerBox}>
+        <View style={styles.left}>
+          <View style={styles.yellowCard}>
+            <View>
+              <Text style={styles.tag}>Medium</Text>
+              <Text style={styles.title}>Yoga Group</Text>
+              <Text style={styles.subText}>25 Nov. | 14:00 - 15:00</Text>
+              <Text style={styles.subText}>A5 Room</Text>
+            </View>
+
+            <View style={styles.trainerRow}>
               <Image
                 source={{
                   uri: "https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABRwCTeWyTBfcCol9C87FAQl07X2v-3GNB_YgfcOQjQTosJBWCedJeIfzku5XLoWbGbMgV1VHX85nJECq4tlkEYPWuhAC3o1jCWL6.jpg?r=0e6",
                 }}
-                style={styles.trainerImg}
+                style={styles.avatar}
               />
-              <Text style={styles.trainerName}>Trainer Tiffany Way</Text>
+              <Text style={styles.trainer}>Trainer Tiffany Way</Text>
             </View>
           </View>
         </View>
 
-        {/* RIGHT — Blue Card + Social Links */}
-        <View style={styles.rightBox}>
-          <View style={styles.cardBlue}>
-            <Text style={styles.level}>Beginner</Text>
-            <Text style={styles.activity}>Cardio Basics</Text>
-            <Text style={styles.info}>26 Nov. | 10:00 - 11:00</Text>
-            <Text style={styles.info}>Room B2</Text>
 
-            <View style={styles.trainerBox}>
+        <View style={styles.right}>
+          <View style={styles.blueCard}>
+            <Text style={styles.tag}>Beginner</Text>
+            <Text style={styles.title}>Cardio Basics</Text>
+            <Text style={styles.subText}>26 Nov. | 10:00 - 11:00</Text>
+            <Text style={styles.subText}>Room B2</Text>
+
+            <View style={styles.trainerRow}>
               <Image
                 source={{
-                  uri: "https://upload.wikimedia.org/wikipedia/en/9/9a/GutsBerserk.png",
+                  uri: "https://m.media-amazon.com/images/M/MV5BMjlmYTljNzEtYWVhYy00OGRmLWJmZGQtYTZjMmE3ZDk4ZWMzXkEyXkFqcGc@._V1_.jpg",
                 }}
-                style={styles.trainerImg}
+                style={styles.avatar}
               />
-              <Text style={styles.trainerName}>Trainer Guts</Text>
+              <Text style={styles.trainer}>Trainer Guts</Text>
             </View>
           </View>
 
-          <View style={styles.cardPink}>
-            <Text style={styles.socialTitle}>Connect with us</Text>
+          <View style={styles.pinkCard}>
+            <Text style={styles.socialText}>Connect with us</Text>
             <View style={styles.socialRow}>
               <FontAwesome name="instagram" size={22} color="#fff" />
               <FontAwesome name="youtube-play" size={22} color="#fff" />
@@ -63,79 +66,84 @@ const Plans = () => {
 };
 
 const styles = StyleSheet.create({
-  section: {
+  wrapper: {
     marginTop: 25,
+    paddingHorizontal: width * 0.05,
   },
-  title: {
-    fontSize: 20,
+  heading: {
+    fontSize: width * 0.055,
     fontWeight: "700",
     marginBottom: 15,
   },
-  rowBox: {
+  row: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "stretch",
   },
-  leftBox: {
+  left: {
     flex: 1,
     marginRight: 8,
   },
-  rightBox: {
+  right: {
     flex: 1,
     marginLeft: 8,
+    justifyContent: "space-between",
   },
-  cardYellow: {
+  yellowCard: {
     backgroundColor: "#FFD54F",
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 14,
+    padding: width * 0.04,
+    flex: 1,
+    justifyContent: "space-between",
   },
-  cardBlue: {
+  blueCard: {
     backgroundColor: "#81D4FA",
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 14,
+    padding: width * 0.04,
     marginBottom: 10,
   },
-  cardPink: {
+  pinkCard: {
     backgroundColor: "#F48FB1",
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 14,
+    padding: width * 0.04,
     alignItems: "center",
+    justifyContent: "center",
   },
-  level: {
+  tag: {
     backgroundColor: "rgba(255,255,255,0.3)",
     alignSelf: "flex-start",
     paddingHorizontal: 10,
-    paddingVertical: 2,
+    paddingVertical: 3,
     borderRadius: 8,
-    fontSize: 12,
+    fontSize: width * 0.03,
     marginBottom: 5,
   },
-  activity: {
-    fontSize: 18,
+  title: {
+    fontSize: width * 0.045,
     fontWeight: "700",
   },
-  info: {
-    fontSize: 14,
+  subText: {
+    fontSize: width * 0.035,
     color: "#333",
     marginTop: 2,
   },
-  trainerBox: {
+  trainerRow: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
   },
-  trainerImg: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+  avatar: {
+    width: width * 0.08,
+    height: width * 0.08,
+    borderRadius: width * 0.04,
     marginRight: 8,
   },
-  trainerName: {
+  trainer: {
     fontWeight: "600",
   },
-  socialTitle: {
+  socialText: {
     color: "#fff",
     fontWeight: "700",
-    fontSize: 15,
+    fontSize: width * 0.04,
     marginBottom: 8,
   },
   socialRow: {
